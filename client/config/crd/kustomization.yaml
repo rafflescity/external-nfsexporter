@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - nfsexport.storage.k8s.io_volumenfsexportclasses.yaml
+  - nfsexport.storage.k8s.io_volumenfsexportcontents.yaml
+  - nfsexport.storage.k8s.io_volumenfsexports.yaml

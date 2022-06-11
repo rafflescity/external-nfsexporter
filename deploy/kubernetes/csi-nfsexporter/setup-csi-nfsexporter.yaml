@@ -1,0 +1,121 @@
+# This YAML file shows how to deploy the CSI nfsexporter together
+# with the hostpath CSI driver. It depends on the RBAC rules
+# from rbac-csi-nfsexporter.yaml and rbac-external-provisioner.yaml.
+#
+# Because external-nfsexporter and external-provisioner get
+# deployed in the same pod, we have to merge the permissions
+# for the provisioner into the service account. This is not
+# necessary when deploying separately.
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: csi-nfsexporter-provisioner-role
+subjects:
+  - kind: ServiceAccount
+    name: csi-nfsexporter # from rbac.yaml
+    # replace with non-default namespace name
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: external-provisioner-runner # from rbac-external-provisioner.yaml
+  apiGroup: rbac.authorization.k8s.io
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: csi-nfsexporter-provisioner-role-cfg
+  # replace with non-default namespace name
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: csi-nfsexporter # from rbac.yaml
+    # replace with non-default namespace name
+    namespace: default
+roleRef:
+  kind: Role
+  name: external-provisioner-cfg # from rbac-external-provisioner.yaml
+  apiGroup: rbac.authorization.k8s.io
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: csi-nfsexporter
+  labels:
+    app: csi-nfsexporter
+spec:
+  selector:
+    app: csi-nfsexporter
+  ports:
+    - name: dummy
+      port: 12345
+
+---
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: csi-nfsexporter
+spec:
+  serviceName: "csi-nfsexporter"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: csi-nfsexporter
+  template:
+    metadata:
+      labels:
+        app: csi-nfsexporter
+    spec:
+      serviceAccountName: csi-nfsexporter
+      containers:
+        - name: csi-provisioner
+          image: k8s.gcr.io/sig-storage/csi-provisioner:v3.0.0
+          args:
+            - "--v=5"
+            - "--csi-address=$(ADDRESS)"
+          env:
+            - name: ADDRESS
+              value: /csi/csi.sock
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: csi-nfsexporter
+          image: gcr.io/k8s-staging-sig-storage/csi-nfsexporter:v5.0.1
+          args:
+            - "--v=5"
+            - "--csi-address=$(ADDRESS)"
+            - "--leader-election=false"
+          env:
+            - name: ADDRESS
+              value: /csi/csi.sock
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+        - name: hostpath
+          image: k8s.gcr.io/sig-storage/hostpathplugin:v1.7.2
+          args:
+            - "--v=5"
+            - "--endpoint=$(CSI_ENDPOINT)"
+            - "--nodeid=$(NODE_NAME)"
+          env:
+            - name: CSI_ENDPOINT
+              value: unix:///csi/csi.sock
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: spec.nodeName
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+      volumes:
+        - name: socket-dir
+          emptyDir: {}

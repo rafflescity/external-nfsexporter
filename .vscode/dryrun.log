@@ -1,0 +1,64 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/alexz/Documents/Github/rafflescity/external-nfsexporter'
+./release-tools/verify-go-version.sh "go"
+ 
+fatal: not a git repository (or any of the parent directories): .git
+
+mkdir -p bin
+ 
+# os_arch_seen captures all of the $os-$arch-$buildx_platform seen for the current binary
+# that we want to build, if we've seen an $os-$arch-$buildx_platform before it means that
+# we don't need to build it again, this is done to avoid building
+# the windows binary multiple times (see the default value of $BUILD_PLATFORMS)
+export os_arch_seen="" && echo '' | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+		os_arch_seen_pre=${os_arch_seen%%$os-$arch-$buildx_platform*}; \
+		if ! [ ${#os_arch_seen_pre} = ${#os_arch_seen} ]; then \
+			continue; \
+		fi; \
+		if ! (set -x; cd ./cmd/nfsexport-controller && CGO_ENABLED=0 GOOS="$os" GOARCH="$arch" go build  -a -ldflags ' -X main.version= -extldflags "-static"' -o "/Users/alexz/Documents/Github/rafflescity/external-nfsexporter/bin/nfsexport-controller$suffix" .); then \
+			echo "Building nfsexport-controller for GOOS=$os GOARCH=$arch failed, see error(s) above."; \
+			exit 1; \
+		fi; \
+		os_arch_seen+=";$os-$arch-$buildx_platform"; \
+	done
+ 
+fatal: not a git repository (or any of the parent directories): .git
+
+mkdir -p bin
+# os_arch_seen captures all of the $os-$arch-$buildx_platform seen for the current binary
+# that we want to build, if we've seen an $os-$arch-$buildx_platform before it means that
+# we don't need to build it again, this is done to avoid building
+# the windows binary multiple times (see the default value of $BUILD_PLATFORMS)
+export os_arch_seen="" && echo '' | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+		os_arch_seen_pre=${os_arch_seen%%$os-$arch-$buildx_platform*}; \
+		if ! [ ${#os_arch_seen_pre} = ${#os_arch_seen} ]; then \
+			continue; \
+		fi; \
+		if ! (set -x; cd ./cmd/csi-nfsexporter && CGO_ENABLED=0 GOOS="$os" GOARCH="$arch" go build  -a -ldflags ' -X main.version= -extldflags "-static"' -o "/Users/alexz/Documents/Github/rafflescity/external-nfsexporter/bin/csi-nfsexporter$suffix" .); then \
+			echo "Building csi-nfsexporter for GOOS=$os GOARCH=$arch failed, see error(s) above."; \
+			exit 1; \
+		fi; \
+		os_arch_seen+=";$os-$arch-$buildx_platform"; \
+	done
+ 
+fatal: not a git repository (or any of the parent directories): .git
+
+mkdir -p bin
+# os_arch_seen captures all of the $os-$arch-$buildx_platform seen for the current binary
+# that we want to build, if we've seen an $os-$arch-$buildx_platform before it means that
+# we don't need to build it again, this is done to avoid building
+# the windows binary multiple times (see the default value of $BUILD_PLATFORMS)
+export os_arch_seen="" && echo '' | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+		os_arch_seen_pre=${os_arch_seen%%$os-$arch-$buildx_platform*}; \
+		if ! [ ${#os_arch_seen_pre} = ${#os_arch_seen} ]; then \
+			continue; \
+		fi; \
+		if ! (set -x; cd ./cmd/nfsexport-validation-webhook && CGO_ENABLED=0 GOOS="$os" GOARCH="$arch" go build  -a -ldflags ' -X main.version= -extldflags "-static"' -o "/Users/alexz/Documents/Github/rafflescity/external-nfsexporter/bin/nfsexport-validation-webhook$suffix" .); then \
+			echo "Building nfsexport-validation-webhook for GOOS=$os GOARCH=$arch failed, see error(s) above."; \
+			exit 1; \
+		fi; \
+		os_arch_seen+=";$os-$arch-$buildx_platform"; \
+	done
+ 
+make: Leaving directory `/Users/alexz/Documents/Github/rafflescity/external-nfsexporter'
+ 

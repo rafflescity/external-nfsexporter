@@ -1,0 +1,861 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Sat Jun 11 11:43:01 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+ 
+# automatic
+?F = $(notdir $?)
+# makefile (from `release-tools/build.make', line 135)
+DOCKER_BUILDX_CREATE_ARGS = 
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/alexz/Documents/Github/rafflescity/external-nfsexporter
+# makefile (from `release-tools/build.make', line 16)
+SHELL := /bin/bash
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `release-tools/build.make', line 61)
+IMAGE_NAME = $(REGISTRY_NAME)/$*
+# makefile (from `release-tools/build.make', line 1)
+MAKEFILE_LIST :=  Makefile release-tools/build.make
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/6l/tblfm9n529l3ck8l1nry74gr0000gn/T/vscode-ipc-a0bc1366-7d0a-4f5b-a4e3-385220b6dc22.sock
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/go/bin:/usr/local/bin/myscripts
+# makefile (from `release-tools/build.make', line 77)
+BUILD_PLATFORMS = 
+# makefile (from `release-tools/build.make', line 80)
+IMPORTPATH_LDFLAGS = -X main.version=$(REV)
+# environment
+LaunchInstanceID = 398E0D0C-3BC0-4BAB-8D8E-B4A1324B4882
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+KUBECONFIG = /Users/alexz/.kube/config
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.pprn7H4Ubg/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/alexz/Documents/Github/rafflescity/external-nfsexporter
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/alexz
+# default
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+# environment
+BASH_COMPLETION_COMPAT_DIR = /usr/local/etc/bash_completion.d
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/alexz/Library/Application Support/Code/CachedData/4af164ea3a06f701fe3e89a2bcbb421d2026b68f
+# environment
+LOGNAME = alexz
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# makefile (from `release-tools/build.make', line 30)
+REGISTRY_NAME = quay.io/k8scsi
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# makefile (from `release-tools/build.make', line 83)
+FULL_LDFLAGS = $(LDFLAGS) $(IMPORTPATH_LDFLAGS) $(EXT_LDFLAGS)
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 2
+# makefile (from `release-tools/build.make', line 26)
+CMDS_DIR = cmd
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = alexz
+# makefile
+.DEFAULT_GOAL := all
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/6l/tblfm9n529l3ck8l1nry74gr0000gn/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/alexz/Library/Application Support/Code/1.68.0-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.22982251.22982258
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# makefile (from `release-tools/build.make', line 67)
+ 
+TESTARGS = 
+# makefile (from `release-tools/build.make', line 82)
+LDFLAGS = 
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# makefile (from `Makefile', line 17)
+CMDS = nfsexport-controller csi-nfsexporter nfsexport-validation-webhook
+# automatic
+<F = $(notdir $<)
+# makefile (from `release-tools/build.make', line 289)
+TEST_SHELLCHECK_DIRS = release-tools
+# environment
+LC_ALL = C
+# environment
+SECURITYSESSIONID = 186a6
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# makefile (from `release-tools/build.make', line 58)
+IMAGE_TAGS =  $(shell if [ "$$(git rev-list -n1 HEAD)" = "$$(git rev-list -n1 origin/master 2>/dev/null)" ]; then echo "canary"; fi) $(shell git branch -r --points-at=HEAD | grep 'origin/release-' | grep -v -e ' -> ' | sed -e 's;.*/release-\(.*\);\1-canary;') $(shell tagged="$$(git describe --tags --match='v*' --abbrev=0)"; if [ "$$tagged" ] && [ "$$(git rev-list -n1 HEAD)" = "$$(git rev-list -n1 $$tagged)" ]; then echo $$tagged; fi)
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# makefile (from `release-tools/build.make', line 42)
+REV = $(shell git describe --long --tags --match='v*' --dirty 2>/dev/null || git rev-list -n1 HEAD)
+# environment
+LANG = C
+# makefile (from `release-tools/build.make', line 81)
+EXT_LDFLAGS = -extldflags "-static"
+# environment
+VSCODE_PID = 1786
+# makefile (from `release-tools/build.make', line 33)
+GOFLAGS_VENDOR = 
+# variable set hash-table stats:
+# Load=81/1024=8%, Rehash=0, Collisions=2/128=2%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777224, inode 23033233): 19 files, no impossibilities.
+
+# 19 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+check-go-version-%:
+#  commands to execute (from `release-tools/build.make', line 312):
+	./release-tools/verify-go-version.sh "$*"
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+build-nfsexport-validation-webhook: check-go-version-go
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `nfsexport-validation-webhook'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 87):
+	mkdir -p bin
+	# os_arch_seen captures all of the $$os-$$arch-$$buildx_platform seen for the current binary
+	# that we want to build, if we've seen an $$os-$$arch-$$buildx_platform before it means that
+	# we don't need to build it again, this is done to avoid building
+	# the windows binary multiple times (see the default value of $$BUILD_PLATFORMS)
+	export os_arch_seen="" && echo '$(BUILD_PLATFORMS)' | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	os_arch_seen_pre=$${os_arch_seen%%$$os-$$arch-$$buildx_platform*}; \
+	if ! [ $${#os_arch_seen_pre} = $${#os_arch_seen} ]; then \
+	continue; \
+	fi; \
+	if ! (set -x; cd ./$(CMDS_DIR)/$* && CGO_ENABLED=0 GOOS="$$os" GOARCH="$$arch" go build $(GOFLAGS_VENDOR) -a -ldflags '$(FULL_LDFLAGS)' -o "$(abspath ./bin)/$*$$suffix" .); then \
+	echo "Building $* for GOOS=$$os GOARCH=$$arch failed, see error(s) above."; \
+	exit 1; \
+	fi; \
+	os_arch_seen+=";$$os-$$arch-$$buildx_platform"; \
+	done
+	
+
+test-spelling:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 317):
+	@ echo; echo "### $@:"
+	@ ./release-tools/verify-spelling.sh "$(pwd)"
+	
+
+container-nfsexport-validation-webhook: build-nfsexport-validation-webhook
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `nfsexport-validation-webhook'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 105):
+	docker build -t $*:latest -f $(shell if [ -e ./$(CMDS_DIR)/$*/Dockerfile ]; then echo ./$(CMDS_DIR)/$*/Dockerfile; else echo Dockerfile; fi) --label revision=$(REV) .
+	
+
+push-multiarch-csi-nfsexporter: check-pull-base-ref build-csi-nfsexporter
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `csi-nfsexporter'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 149):
+	set -ex; \
+	export DOCKER_CLI_EXPERIMENTAL=enabled; \
+	docker buildx create $(DOCKER_BUILDX_CREATE_ARGS) --use --name multiarchimage-buildertest; \
+	trap "docker buildx rm multiarchimage-buildertest" EXIT; \
+	dockerfile_linux=$$(if [ -e ./$(CMDS_DIR)/$*/Dockerfile ]; then echo ./$(CMDS_DIR)/$*/Dockerfile; else echo Dockerfile; fi); \
+	dockerfile_windows=$$(if [ -e ./$(CMDS_DIR)/$*/Dockerfile.Windows ]; then echo ./$(CMDS_DIR)/$*/Dockerfile.Windows; else echo Dockerfile.Windows; fi); \
+	if [ '$(BUILD_PLATFORMS)' ]; then build_platforms='$(BUILD_PLATFORMS)'; else build_platforms="linux amd64"; fi; \
+	if ! [ -f "$$dockerfile_windows" ]; then \
+	build_platforms="$$(echo "$$build_platforms" | sed -e 's/windows *[^ ]* *[^ ]* *.exe *[^ ]* *[^ ]*//g' -e 's/; *;/;/g' -e 's/;[ ]*$$//')"; \
+	fi; \
+	pushMultiArch () { \
+	tag=$$1; \
+	echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	escaped_base_image=$${base_image/:/-}; \
+	escaped_buildx_platform=$${buildx_platform//\//-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	docker buildx build --push \
+	--tag $(IMAGE_NAME):$$escaped_buildx_platform-$$os-$$escaped_base_image$$tag \
+	--platform=$$os/$$buildx_platform \
+	--file $$(eval echo \$${dockerfile_$$os}) \
+	--build-arg binary=./bin/$*$$suffix \
+	--build-arg ARCH=$$arch \
+	--build-arg BASE_IMAGE=$$base_image \
+	--build-arg ADDON_IMAGE=$$addon_image \
+	--label revision=$(REV) \
+	.; \
+	done; \
+	images=$$(echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	escaped_base_image=$${base_image/:/-}; \
+	escaped_buildx_platform=$${buildx_platform//\//-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	echo $(IMAGE_NAME):$$escaped_buildx_platform-$$os-$$escaped_base_image$$tag; \
+	done); \
+	docker manifest create --amend $(IMAGE_NAME):$$tag $$images; \
+	echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	if [ $$os = "windows" ]; then \
+	escaped_base_image=$${base_image/:/-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	image=$(IMAGE_NAME):$$arch-$$os-$$escaped_base_image$$tag; \
+	os_version=$$(docker manifest inspect mcr.microsoft.com/windows/$${base_image} | grep "os.version" | head -n 1 | awk '{print $$2}' | sed -e 's/"//g') || true; \
+	docker manifest annotate --os-version $$os_version $(IMAGE_NAME):$$tag $$image; \
+	fi; \
+	done; \
+	docker manifest push -p $(IMAGE_NAME):$$tag; \
+	}; \
+	if [ $(PULL_BASE_REF) = "master" ]; then \
+	: "creating or overwriting canary image"; \
+	pushMultiArch canary; \
+	elif echo $(PULL_BASE_REF) | grep -q -e 'release-*' ; then \
+	: "creating or overwriting canary image for release branch"; \
+	release_canary_tag=$$(echo $(PULL_BASE_REF) | cut -f2 -d '-')-canary; \
+	pushMultiArch $$release_canary_tag; \
+ 
+	elif docker pull $(IMAGE_NAME):$(PULL_BASE_REF) 2>&1 | tee /dev/stderr | grep -q "manifest for $(IMAGE_NAME):$(PULL_BASE_REF) not found"; then \
+	: "creating release image"; \
+	pushMultiArch $(PULL_BASE_REF); \
+	else \
+	: "ERROR: release image $(IMAGE_NAME):$(PULL_BASE_REF) already exists: a new tag is required!"; \
+	exit 1; \
+	fi
+	
+
+nfsexport-controller:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+all: build
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
+
+# Not a target:
+release-tools/build.make:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-10 23:54:37
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+.PHONY: all nfsexport-controller csi-nfsexporter nfsexport-validation-webhook clean test build-% build container-% container push-% push clean test check-pull-base-ref push-multiarch test-go test-vet test-fmt test-vendor test-subtree test-shellcheck check-go-version-% test-spelling test-boilerplate
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+check-go-version-%:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+check-pull-base-ref:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 211):
+	if ! [ "$(PULL_BASE_REF)" ]; then \
+	echo >&2 "ERROR: PULL_BASE_REF must be set to 'master', 'release-x.y', or a tag name."; \
+	exit 1; \
+	fi
+	
+
+test-boilerplate:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 323):
+	@ echo; echo "### $@:"
+	@ ./release-tools/verify-boilerplate.sh "$(pwd)"
+	
+
+csi-nfsexporter:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+push-multiarch-nfsexport-validation-webhook: check-pull-base-ref build-nfsexport-validation-webhook
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `nfsexport-validation-webhook'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 149):
+	set -ex; \
+	export DOCKER_CLI_EXPERIMENTAL=enabled; \
+	docker buildx create $(DOCKER_BUILDX_CREATE_ARGS) --use --name multiarchimage-buildertest; \
+	trap "docker buildx rm multiarchimage-buildertest" EXIT; \
+	dockerfile_linux=$$(if [ -e ./$(CMDS_DIR)/$*/Dockerfile ]; then echo ./$(CMDS_DIR)/$*/Dockerfile; else echo Dockerfile; fi); \
+	dockerfile_windows=$$(if [ -e ./$(CMDS_DIR)/$*/Dockerfile.Windows ]; then echo ./$(CMDS_DIR)/$*/Dockerfile.Windows; else echo Dockerfile.Windows; fi); \
+	if [ '$(BUILD_PLATFORMS)' ]; then build_platforms='$(BUILD_PLATFORMS)'; else build_platforms="linux amd64"; fi; \
+	if ! [ -f "$$dockerfile_windows" ]; then \
+	build_platforms="$$(echo "$$build_platforms" | sed -e 's/windows *[^ ]* *[^ ]* *.exe *[^ ]* *[^ ]*//g' -e 's/; *;/;/g' -e 's/;[ ]*$$//')"; \
+	fi; \
+	pushMultiArch () { \
+	tag=$$1; \
+	echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	escaped_base_image=$${base_image/:/-}; \
+	escaped_buildx_platform=$${buildx_platform//\//-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	docker buildx build --push \
+	--tag $(IMAGE_NAME):$$escaped_buildx_platform-$$os-$$escaped_base_image$$tag \
+	--platform=$$os/$$buildx_platform \
+	--file $$(eval echo \$${dockerfile_$$os}) \
+	--build-arg binary=./bin/$*$$suffix \
+	--build-arg ARCH=$$arch \
+	--build-arg BASE_IMAGE=$$base_image \
+	--build-arg ADDON_IMAGE=$$addon_image \
+	--label revision=$(REV) \
+	.; \
+	done; \
+	images=$$(echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	escaped_base_image=$${base_image/:/-}; \
+	escaped_buildx_platform=$${buildx_platform//\//-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	echo $(IMAGE_NAME):$$escaped_buildx_platform-$$os-$$escaped_base_image$$tag; \
+	done); \
+	docker manifest create --amend $(IMAGE_NAME):$$tag $$images; \
+	echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	if [ $$os = "windows" ]; then \
+	escaped_base_image=$${base_image/:/-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	image=$(IMAGE_NAME):$$arch-$$os-$$escaped_base_image$$tag; \
+	os_version=$$(docker manifest inspect mcr.microsoft.com/windows/$${base_image} | grep "os.version" | head -n 1 | awk '{print $$2}' | sed -e 's/"//g') || true; \
+	docker manifest annotate --os-version $$os_version $(IMAGE_NAME):$$tag $$image; \
+	fi; \
+	done; \
+	docker manifest push -p $(IMAGE_NAME):$$tag; \
+	}; \
+	if [ $(PULL_BASE_REF) = "master" ]; then \
+	: "creating or overwriting canary image"; \
+	pushMultiArch canary; \
+	elif echo $(PULL_BASE_REF) | grep -q -e 'release-*' ; then \
+	: "creating or overwriting canary image for release branch"; \
+	release_canary_tag=$$(echo $(PULL_BASE_REF) | cut -f2 -d '-')-canary; \
+	pushMultiArch $$release_canary_tag; \
+	elif docker pull $(IMAGE_NAME):$(PULL_BASE_REF) 2>&1 | tee /dev/stderr | grep -q "manifest for $(IMAGE_NAME):$(PULL_BASE_REF) not found"; then \
+	: "creating release image"; \
+	pushMultiArch $(PULL_BASE_REF); \
+	else \
+	: "ERROR: release image $(IMAGE_NAME):$(PULL_BASE_REF) already exists: a new tag is required!"; \
+	exit 1; \
+	fi
+	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+push: push-nfsexport-controller push-csi-nfsexporter push-nfsexport-validation-webhook
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-10 23:54:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+test-shellcheck:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 293):
+	@ echo; echo "### $@:"
+	@ ret=0; \
+	if ! command -v docker; then \
+	echo "skipped, no Docker"; \
+	exit 0; \
+	fi; \
+ 
+	for dir in $(abspath $(TEST_SHELLCHECK_DIRS)); do \
+	echo; \
+	echo "$$dir:"; \
+	./release-tools/verify-shellcheck.sh "$$dir" || ret=1; \
+	done; \
+	exit $$ret
+	
+
+test: check-go-version-go test-go test-vet test-fmt test-vendor test-subtree test-shellcheck
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+build: build-nfsexport-controller build-csi-nfsexporter build-nfsexport-validation-webhook
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
+
+container: container-nfsexport-controller container-csi-nfsexporter container-nfsexport-validation-webhook
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+test-vet:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 233):
+	@ echo; echo "### $@:"
+	go vet $(GOFLAGS_VENDOR) `go list $(GOFLAGS_VENDOR) ./... | grep -v vendor $(TEST_VET_FILTER_CMD)`
+	
+
+nfsexport-validation-webhook:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+test-subtree:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 284):
+	@ echo; echo "### $@:"
+	./release-tools/verify-subtree.sh release-tools
+	
+
+check-go-version-go:
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `go'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := check-go-version-go
+# automatic
+# % := 
+# automatic
+# * := go
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
+#  commands to execute (from `release-tools/build.make', line 312):
+	./release-tools/verify-go-version.sh "$*"
+	
+
+push-multiarch: push-multiarch-nfsexport-controller push-multiarch-csi-nfsexporter push-multiarch-nfsexport-validation-webhook
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+push-nfsexport-controller: container-nfsexport-controller
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `nfsexport-controller'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 108):
+	set -ex; \
+	push_image () { \
+	docker tag $*:latest $(IMAGE_NAME):$$tag; \
+	docker push $(IMAGE_NAME):$$tag; \
+	}; \
+	for tag in $(IMAGE_TAGS); do \
+	if [ "$$tag" = "canary" ] || echo "$$tag" | grep -q -e '-canary$$'; then \
+	: "creating or overwriting canary image"; \
+	push_image; \
+	elif docker pull $(IMAGE_NAME):$$tag 2>&1 | tee /dev/stderr | grep -q "manifest for $(IMAGE_NAME):$$tag not found"; then \
+	: "creating release image"; \
+	push_image; \
+	else \
+	: "release image $(IMAGE_NAME):$$tag already exists, skipping push"; \
+	fi; \
+	done
+	
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+push-%:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+build-nfsexport-controller: check-go-version-go
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `nfsexport-controller'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
+#  commands to execute (from `release-tools/build.make', line 87):
+	mkdir -p bin
+	# os_arch_seen captures all of the $$os-$$arch-$$buildx_platform seen for the current binary
+	# that we want to build, if we've seen an $$os-$$arch-$$buildx_platform before it means that
+	# we don't need to build it again, this is done to avoid building
+	# the windows binary multiple times (see the default value of $$BUILD_PLATFORMS)
+	export os_arch_seen="" && echo '$(BUILD_PLATFORMS)' | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	os_arch_seen_pre=$${os_arch_seen%%$$os-$$arch-$$buildx_platform*}; \
+	if ! [ $${#os_arch_seen_pre} = $${#os_arch_seen} ]; then \
+	continue; \
+	fi; \
+	if ! (set -x; cd ./$(CMDS_DIR)/$* && CGO_ENABLED=0 GOOS="$$os" GOARCH="$$arch" go build $(GOFLAGS_VENDOR) -a -ldflags '$(FULL_LDFLAGS)' -o "$(abspath ./bin)/$*$$suffix" .); then \
+	echo "Building $* for GOOS=$$os GOARCH=$$arch failed, see error(s) above."; \
+	exit 1; \
+	fi; \
+	os_arch_seen+=";$$os-$$arch-$$buildx_platform"; \
+	done
+	
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 220):
+	-rm -rf bin
+	
+
+build-%:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+container-nfsexport-controller: build-nfsexport-controller
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `nfsexport-controller'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 105):
+	docker build -t $*:latest -f $(shell if [ -e ./$(CMDS_DIR)/$*/Dockerfile ]; then echo ./$(CMDS_DIR)/$*/Dockerfile; else echo Dockerfile; fi) --label revision=$(REV) .
+	
+
+container-%:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+push-csi-nfsexporter: container-csi-nfsexporter
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `csi-nfsexporter'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 108):
+	set -ex; \
+	push_image () { \
+	docker tag $*:latest $(IMAGE_NAME):$$tag; \
+	docker push $(IMAGE_NAME):$$tag; \
+	}; \
+	for tag in $(IMAGE_TAGS); do \
+	if [ "$$tag" = "canary" ] || echo "$$tag" | grep -q -e '-canary$$'; then \
+	: "creating or overwriting canary image"; \
+	push_image; \
+	elif docker pull $(IMAGE_NAME):$$tag 2>&1 | tee /dev/stderr | grep -q "manifest for $(IMAGE_NAME):$$tag not found"; then \
+	: "creating release image"; \
+	push_image; \
+	else \
+	: "release image $(IMAGE_NAME):$$tag already exists, skipping push"; \
+	fi; \
+	done
+ 
+	
+
+build-csi-nfsexporter: check-go-version-go
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `csi-nfsexporter'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 87):
+	mkdir -p bin
+	# os_arch_seen captures all of the $$os-$$arch-$$buildx_platform seen for the current binary
+	# that we want to build, if we've seen an $$os-$$arch-$$buildx_platform before it means that
+	# we don't need to build it again, this is done to avoid building
+	# the windows binary multiple times (see the default value of $$BUILD_PLATFORMS)
+	export os_arch_seen="" && echo '$(BUILD_PLATFORMS)' | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	os_arch_seen_pre=$${os_arch_seen%%$$os-$$arch-$$buildx_platform*}; \
+	if ! [ $${#os_arch_seen_pre} = $${#os_arch_seen} ]; then \
+	continue; \
+	fi; \
+	if ! (set -x; cd ./$(CMDS_DIR)/$* && CGO_ENABLED=0 GOOS="$$os" GOARCH="$$arch" go build $(GOFLAGS_VENDOR) -a -ldflags '$(FULL_LDFLAGS)' -o "$(abspath ./bin)/$*$$suffix" .); then \
+	echo "Building $* for GOOS=$$os GOARCH=$$arch failed, see error(s) above."; \
+	exit 1; \
+	fi; \
+	os_arch_seen+=";$$os-$$arch-$$buildx_platform"; \
+	done
+	
+
+test-fmt:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 239):
+	@ echo; echo "### $@:"
+	files=$$(find . -name '*.go' | grep -v './vendor' $(TEST_FMT_FILTER_CMD)); \
+	if [ $$(gofmt -d $$files | wc -l) -ne 0 ]; then \
+	echo "formatting errors:"; \
+	gofmt -d $$files; \
+	false; \
+	fi
+	
+
+container-csi-nfsexporter: build-csi-nfsexporter
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `csi-nfsexporter'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 105):
+	docker build -t $*:latest -f $(shell if [ -e ./$(CMDS_DIR)/$*/Dockerfile ]; then echo ./$(CMDS_DIR)/$*/Dockerfile; else echo Dockerfile; fi) --label revision=$(REV) .
+	
+
+push-multiarch-nfsexport-controller: check-pull-base-ref build-nfsexport-controller
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `nfsexport-controller'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 149):
+	set -ex; \
+	export DOCKER_CLI_EXPERIMENTAL=enabled; \
+	docker buildx create $(DOCKER_BUILDX_CREATE_ARGS) --use --name multiarchimage-buildertest; \
+	trap "docker buildx rm multiarchimage-buildertest" EXIT; \
+	dockerfile_linux=$$(if [ -e ./$(CMDS_DIR)/$*/Dockerfile ]; then echo ./$(CMDS_DIR)/$*/Dockerfile; else echo Dockerfile; fi); \
+	dockerfile_windows=$$(if [ -e ./$(CMDS_DIR)/$*/Dockerfile.Windows ]; then echo ./$(CMDS_DIR)/$*/Dockerfile.Windows; else echo Dockerfile.Windows; fi); \
+	if [ '$(BUILD_PLATFORMS)' ]; then build_platforms='$(BUILD_PLATFORMS)'; else build_platforms="linux amd64"; fi; \
+	if ! [ -f "$$dockerfile_windows" ]; then \
+	build_platforms="$$(echo "$$build_platforms" | sed -e 's/windows *[^ ]* *[^ ]* *.exe *[^ ]* *[^ ]*//g' -e 's/; *;/;/g' -e 's/;[ ]*$$//')"; \
+	fi; \
+	pushMultiArch () { \
+	tag=$$1; \
+	echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	escaped_base_image=$${base_image/:/-}; \
+	escaped_buildx_platform=$${buildx_platform//\//-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	docker buildx build --push \
+	--tag $(IMAGE_NAME):$$escaped_buildx_platform-$$os-$$escaped_base_image$$tag \
+	--platform=$$os/$$buildx_platform \
+	--file $$(eval echo \$${dockerfile_$$os}) \
+	--build-arg binary=./bin/$*$$suffix \
+	--build-arg ARCH=$$arch \
+	--build-arg BASE_IMAGE=$$base_image \
+	--build-arg ADDON_IMAGE=$$addon_image \
+	--label revision=$(REV) \
+	.; \
+	done; \
+	images=$$(echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	escaped_base_image=$${base_image/:/-}; \
+	escaped_buildx_platform=$${buildx_platform//\//-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	echo $(IMAGE_NAME):$$escaped_buildx_platform-$$os-$$escaped_base_image$$tag; \
+	done); \
+	docker manifest create --amend $(IMAGE_NAME):$$tag $$images; \
+	echo "$$build_platforms" | tr ';' '\n' | while read -r os arch buildx_platform suffix base_image addon_image; do \
+	if [ $$os = "windows" ]; then \
+	escaped_base_image=$${base_image/:/-}; \
+	if ! [ -z $$escaped_base_image ]; then escaped_base_image+="-"; fi; \
+	image=$(IMAGE_NAME):$$arch-$$os-$$escaped_base_image$$tag; \
+	os_version=$$(docker manifest inspect mcr.microsoft.com/windows/$${base_image} | grep "os.version" | head -n 1 | awk '{print $$2}' | sed -e 's/"//g') || true; \
+	docker manifest annotate --os-version $$os_version $(IMAGE_NAME):$$tag $$image; \
+	fi; \
+	done; \
+	docker manifest push -p $(IMAGE_NAME):$$tag; \
+	}; \
+	if [ $(PULL_BASE_REF) = "master" ]; then \
+	: "creating or overwriting canary image"; \
+	pushMultiArch canary; \
+	elif echo $(PULL_BASE_REF) | grep -q -e 'release-*' ; then \
+	: "creating or overwriting canary image for release branch"; \
+	release_canary_tag=$$(echo $(PULL_BASE_REF) | cut -f2 -d '-')-canary; \
+	pushMultiArch $$release_canary_tag; \
+	elif docker pull $(IMAGE_NAME):$(PULL_BASE_REF) 2>&1 | tee /dev/stderr | grep -q "manifest for $(IMAGE_NAME):$(PULL_BASE_REF) not found"; then \
+	: "creating release image"; \
+	pushMultiArch $(PULL_BASE_REF); \
+	else \
+	: "ERROR: release image $(IMAGE_NAME):$(PULL_BASE_REF) already exists: a new tag is required!"; \
+	exit 1; \
+	fi
+	
+
+push-nfsexport-validation-webhook: container-nfsexport-validation-webhook
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `nfsexport-validation-webhook'
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 108):
+	set -ex; \
+	push_image () { \
+	docker tag $*:latest $(IMAGE_NAME):$$tag; \
+	docker push $(IMAGE_NAME):$$tag; \
+	}; \
+	for tag in $(IMAGE_TAGS); do \
+	if [ "$$tag" = "canary" ] || echo "$$tag" | grep -q -e '-canary$$'; then \
+	: "creating or overwriting canary image"; \
+	push_image; \
+	elif docker pull $(IMAGE_NAME):$$tag 2>&1 | tee /dev/stderr | grep -q "manifest for $(IMAGE_NAME):$$tag not found"; then \
+	: "creating release image"; \
+	push_image; \
+	else \
+	: "release image $(IMAGE_NAME):$$tag already exists, skipping push"; \
+	fi; \
+	done
+	
+
+test-go:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 227):
+	@ echo; echo "### $@:"
+	go test $(GOFLAGS_VENDOR) `go list $(GOFLAGS_VENDOR) ./... | grep -v -e 'vendor' -e '/test/e2e$$' $(TEST_GO_FILTER_CMD)` $(TESTARGS)
+	
+
+test-vendor:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `release-tools/build.make', line 278):
+	@ echo; echo "### $@:"
+	@ ./release-tools/verify-vendor.sh
+	
+ 
+
+# files hash-table stats:
+# Load=41/1024=4%, Rehash=0, Collisions=1/134=1%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 2
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4062 / max = 4062 / min = 4062 / avg = 4062
+
+# Finished Make data base on Sat Jun 11 11:43:01 2022
+
+ 

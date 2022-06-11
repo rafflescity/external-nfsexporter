@@ -1,0 +1,9 @@
+apiVersion: nfsexport.storage.k8s.io/v1
+kind: VolumeNfsExport
+metadata:
+  name: new-nfsexport-demo-v1
+spec:
+  volumeNfsExportClassName: csi-hostpath-snapclass-v1
+  source: # Only one of the two fields should be set for a nfsexport. Therefore this nfsexport is invalid.
+    persistentVolumeClaimName: pvc 
+    volumeNfsExportContentName: vsc 

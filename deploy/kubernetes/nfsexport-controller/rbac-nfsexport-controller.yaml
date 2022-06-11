@@ -1,0 +1,85 @@
+# RBAC file for the nfsexport controller.
+#
+# The nfsexport controller implements the control loop for CSI nfsexport functionality.
+# It should be installed as part of the base Kubernetes distribution in an appropriate
+# namespace for components implementing base system functionality. For installing with
+# Vanilla Kubernetes, kube-system makes sense for the namespace.
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nfsexport-controller
+  namespace: kube-system
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nfsexport-controller-runner
+rules:
+  - apiGroups: [""]
+    resources: ["persistentvolumes"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list", "watch", "update"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["list", "watch", "create", "update", "patch"]
+  - apiGroups: ["nfsexport.storage.k8s.io"]
+    resources: ["volumenfsexportclasses"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["nfsexport.storage.k8s.io"]
+    resources: ["volumenfsexportcontents"]
+    verbs: ["create", "get", "list", "watch", "update", "delete", "patch"]
+  - apiGroups: ["nfsexport.storage.k8s.io"]
+    resources: ["volumenfsexportcontents/status"]
+    verbs: ["patch"]
+  - apiGroups: ["nfsexport.storage.k8s.io"]
+    resources: ["volumenfsexports"]
+    verbs: ["get", "list", "watch", "update", "patch"]
+  - apiGroups: ["nfsexport.storage.k8s.io"]
+    resources: ["volumenfsexports/status"]
+    verbs: ["update", "patch"]
+  # Enable this RBAC rule only when using distributed nfsexportting, i.e. when the enable-distributed-nfsexportting flag is set to true
+  # - apiGroups: [""]
+  #   resources: ["nodes"]
+  #   verbs: ["get", "list", "watch"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nfsexport-controller-role
+subjects:
+  - kind: ServiceAccount
+    name: nfsexport-controller
+    namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: nfsexport-controller-runner
+  apiGroup: rbac.authorization.k8s.io
+
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nfsexport-controller-leaderelection
+  namespace: kube-system
+rules:
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["get", "watch", "list", "delete", "update", "create"]
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nfsexport-controller-leaderelection
+  namespace: kube-system
+subjects:
+  - kind: ServiceAccount
+    name: nfsexport-controller
+roleRef:
+  kind: Role
+  name: nfsexport-controller-leaderelection
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,8 @@
+apiVersion: nfsexport.storage.k8s.io/v1
+kind: VolumeNfsExport
+metadata:
+  name: new-nfsexport-demo-v1
+spec:
+  volumeNfsExportClassName: csi-hostpath-snapclass-v1
+  source:
+    persistentVolumeClaimName: hpvc

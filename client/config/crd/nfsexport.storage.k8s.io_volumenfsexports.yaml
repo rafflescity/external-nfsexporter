@@ -1,0 +1,308 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+    api-approved.kubernetes.io: "https://github.com/kubernetes-csi/external-nfsexporter/pull/665"
+  creationTimestamp: null
+  name: volumenfsexports.nfsexport.storage.k8s.io
+spec:
+  group: nfsexport.storage.k8s.io
+  names:
+    kind: VolumeNfsExport
+    listKind: VolumeNfsExportList
+    plural: volumenfsexports
+    shortNames:
+    - vs
+    singular: volumenfsexport
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - description: Indicates if the nfsexport is ready to be used to restore a volume.
+      jsonPath: .status.readyToUse
+      name: ReadyToUse
+      type: boolean
+    - description: If a new nfsexport needs to be created, this contains the name of
+        the source PVC from which this nfsexport was (or will be) created.
+      jsonPath: .spec.source.persistentVolumeClaimName
+      name: SourcePVC
+      type: string
+    - description: If a nfsexport already exists, this contains the name of the existing
+        VolumeNfsExportContent object representing the existing nfsexport.
+      jsonPath: .spec.source.volumeNfsExportContentName
+      name: SourceNfsExportContent
+      type: string
+    - description: Represents the minimum size of volume required to rehydrate from
+        this nfsexport.
+      jsonPath: .status.restoreSize
+      name: RestoreSize
+      type: string
+    - description: The name of the VolumeNfsExportClass requested by the VolumeNfsExport.
+      jsonPath: .spec.volumeNfsExportClassName
+      name: NfsExportClass
+      type: string
+    - description: Name of the VolumeNfsExportContent object to which the VolumeNfsExport
+        object intends to bind to. Please note that verification of binding actually
+        requires checking both VolumeNfsExport and VolumeNfsExportContent to ensure
+        both are pointing at each other. Binding MUST be verified prior to usage of
+        this object.
+      jsonPath: .status.boundVolumeNfsExportContentName
+      name: NfsExportContent
+      type: string
+    - description: Timestamp when the point-in-time nfsexport was taken by the underlying
+        storage system.
+      jsonPath: .status.creationTime
+      name: CreationTime
+      type: date
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1
+    schema:
+      openAPIV3Schema:
+        description: VolumeNfsExport is a user's request for either creating a point-in-time
+          nfsexport of a persistent volume, or binding to a pre-existing nfsexport.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          spec:
+            description: 'spec defines the desired characteristics of a nfsexport requested
+              by a user. More info: https://kubernetes.io/docs/concepts/storage/volume-nfsexports#volumenfsexports
+              Required.'
+            properties:
+              source:
+                description: source specifies where a nfsexport will be created from.
+                  This field is immutable after creation. Required.
+                properties:
+                  persistentVolumeClaimName:
+                    description: persistentVolumeClaimName specifies the name of the
+                      PersistentVolumeClaim object representing the volume from which
+                      a nfsexport should be created. This PVC is assumed to be in the
+                      same namespace as the VolumeNfsExport object. This field should
+                      be set if the nfsexport does not exists, and needs to be created.
+                      This field is immutable.
+                    type: string
+                  volumeNfsExportContentName:
+                    description: volumeNfsExportContentName specifies the name of a
+                      pre-existing VolumeNfsExportContent object representing an existing
+                      volume nfsexport. This field should be set if the nfsexport already
+                      exists and only needs a representation in Kubernetes. This field
+                      is immutable.
+                    type: string
+                type: object
+                oneOf:
+                - required: ["persistentVolumeClaimName"]
+                - required: ["volumeNfsExportContentName"]
+              volumeNfsExportClassName:
+                description: 'VolumeNfsExportClassName is the name of the VolumeNfsExportClass
+                  requested by the VolumeNfsExport. VolumeNfsExportClassName may be
+                  left nil to indicate that the default NfsExportClass should be used.
+                  A given cluster may have multiple default Volume NfsExportClasses:
+                  one default per CSI Driver. If a VolumeNfsExport does not specify
+                  a NfsExportClass, VolumeNfsExportSource will be checked to figure
+                  out what the associated CSI Driver is, and the default VolumeNfsExportClass
+                  associated with that CSI Driver will be used. If more than one VolumeNfsExportClass
+                  exist for a given CSI Driver and more than one have been marked
+                  as default, CreateNfsExport will fail and generate an event. Empty
+                  string is not allowed for this field.'
+                type: string
+            required:
+            - source
+            type: object
+          status:
+            description: status represents the current information of a nfsexport.
+              Consumers must verify binding between VolumeNfsExport and VolumeNfsExportContent
+              objects is successful (by validating that both VolumeNfsExport and VolumeNfsExportContent
+              point at each other) before using this object.
+            properties:
+              boundVolumeNfsExportContentName:
+                description: 'boundVolumeNfsExportContentName is the name of the VolumeNfsExportContent
+                  object to which this VolumeNfsExport object intends to bind to. If
+                  not specified, it indicates that the VolumeNfsExport object has not
+                  been successfully bound to a VolumeNfsExportContent object yet. NOTE:
+                  To avoid possible security issues, consumers must verify binding
+                  between VolumeNfsExport and VolumeNfsExportContent objects is successful
+                  (by validating that both VolumeNfsExport and VolumeNfsExportContent
+                  point at each other) before using this object.'
+                type: string
+              creationTime:
+                description: creationTime is the timestamp when the point-in-time
+                  nfsexport is taken by the underlying storage system. In dynamic nfsexport
+                  creation case, this field will be filled in by the nfsexport controller
+                  with the "creation_time" value returned from CSI "CreateNfsExport"
+                  gRPC call. For a pre-existing nfsexport, this field will be filled
+                  with the "creation_time" value returned from the CSI "ListNfsExports"
+                  gRPC call if the driver supports it. If not specified, it may indicate
+                  that the creation time of the nfsexport is unknown.
+                format: date-time
+                type: string
+              error:
+                description: error is the last observed error during nfsexport creation,
+                  if any. This field could be helpful to upper level controllers(i.e.,
+                  application controller) to decide whether they should continue on
+                  waiting for the nfsexport to be created based on the type of error
+                  reported. The nfsexport controller will keep retrying when an error
+                  occurs during the nfsexport creation. Upon success, this error field
+                  will be cleared.
+                properties:
+                  message:
+                    description: 'message is a string detailing the encountered error
+                      during nfsexport creation if specified. NOTE: message may be
+                      logged, and it should not contain sensitive information.'
+                    type: string
+                  time:
+                    description: time is the timestamp when the error was encountered.
+                    format: date-time
+                    type: string
+                type: object
+              readyToUse:
+                description: readyToUse indicates if the nfsexport is ready to be used
+                  to restore a volume. In dynamic nfsexport creation case, this field
+                  will be filled in by the nfsexport controller with the "ready_to_use"
+                  value returned from CSI "CreateNfsExport" gRPC call. For a pre-existing
+                  nfsexport, this field will be filled with the "ready_to_use" value
+                  returned from the CSI "ListNfsExports" gRPC call if the driver supports
+                  it, otherwise, this field will be set to "True". If not specified,
+                  it means the readiness of a nfsexport is unknown.
+                type: boolean
+              restoreSize:
+                type: string
+                description: restoreSize represents the minimum size of volume required
+                  to create a volume from this nfsexport. In dynamic nfsexport creation
+                  case, this field will be filled in by the nfsexport controller with
+                  the "size_bytes" value returned from CSI "CreateNfsExport" gRPC call.
+                  For a pre-existing nfsexport, this field will be filled with the
+                  "size_bytes" value returned from the CSI "ListNfsExports" gRPC call
+                  if the driver supports it. When restoring a volume from this nfsexport,
+                  the size of the volume MUST NOT be smaller than the restoreSize
+                  if it is specified, otherwise the restoration will fail. If not
+                  specified, it indicates that the size is unknown.
+                pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                x-kubernetes-int-or-string: true
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+  - additionalPrinterColumns:
+    - description: Indicates if the nfsexport is ready to be used to restore a volume.
+      jsonPath: .status.readyToUse
+      name: ReadyToUse
+      type: boolean
+    - description: If a new nfsexport needs to be created, this contains the name of the source PVC from which this nfsexport was (or will be) created.
+      jsonPath: .spec.source.persistentVolumeClaimName
+      name: SourcePVC
+      type: string
+    - description: If a nfsexport already exists, this contains the name of the existing VolumeNfsExportContent object representing the existing nfsexport.
+      jsonPath: .spec.source.volumeNfsExportContentName
+      name: SourceNfsExportContent
+      type: string
+    - description: Represents the minimum size of volume required to rehydrate from this nfsexport.
+      jsonPath: .status.restoreSize
+      name: RestoreSize
+      type: string
+    - description: The name of the VolumeNfsExportClass requested by the VolumeNfsExport.
+      jsonPath: .spec.volumeNfsExportClassName
+      name: NfsExportClass
+      type: string
+    - description: Name of the VolumeNfsExportContent object to which the VolumeNfsExport object intends to bind to. Please note that verification of binding actually requires checking both VolumeNfsExport and VolumeNfsExportContent to ensure both are pointing at each other. Binding MUST be verified prior to usage of this object.
+      jsonPath: .status.boundVolumeNfsExportContentName
+      name: NfsExportContent
+      type: string
+    - description: Timestamp when the point-in-time nfsexport was taken by the underlying storage system.
+      jsonPath: .status.creationTime
+      name: CreationTime
+      type: date
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1beta1
+    # This indicates the v1beta1 version of the custom resource is deprecated.
+    # API requests to this version receive a warning in the server response.
+    deprecated: true
+    # This overrides the default warning returned to clients making v1beta1 API requests.
+    deprecationWarning: "nfsexport.storage.k8s.io/v1beta1 VolumeNfsExport is deprecated; use nfsexport.storage.k8s.io/v1 VolumeNfsExport"
+    schema:
+      openAPIV3Schema:
+        description: VolumeNfsExport is a user's request for either creating a point-in-time nfsexport of a persistent volume, or binding to a pre-existing nfsexport.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          spec:
+            description: 'spec defines the desired characteristics of a nfsexport requested by a user. More info: https://kubernetes.io/docs/concepts/storage/volume-nfsexports#volumenfsexports Required.'
+            properties:
+              source:
+                description: source specifies where a nfsexport will be created from. This field is immutable after creation. Required.
+                properties:
+                  persistentVolumeClaimName:
+                    description: persistentVolumeClaimName specifies the name of the PersistentVolumeClaim object representing the volume from which a nfsexport should be created. This PVC is assumed to be in the same namespace as the VolumeNfsExport object. This field should be set if the nfsexport does not exists, and needs to be created. This field is immutable.
+                    type: string
+                  volumeNfsExportContentName:
+                    description: volumeNfsExportContentName specifies the name of a pre-existing VolumeNfsExportContent object representing an existing volume nfsexport. This field should be set if the nfsexport already exists and only needs a representation in Kubernetes. This field is immutable.
+                    type: string
+                type: object
+              volumeNfsExportClassName:
+                description: 'VolumeNfsExportClassName is the name of the VolumeNfsExportClass requested by the VolumeNfsExport. VolumeNfsExportClassName may be left nil to indicate that the default NfsExportClass should be used. A given cluster may have multiple default Volume NfsExportClasses: one default per CSI Driver. If a VolumeNfsExport does not specify a NfsExportClass, VolumeNfsExportSource will be checked to figure out what the associated CSI Driver is, and the default VolumeNfsExportClass associated with that CSI Driver will be used. If more than one VolumeNfsExportClass exist for a given CSI Driver and more than one have been marked as default, CreateNfsExport will fail and generate an event. Empty string is not allowed for this field.'
+                type: string
+            required:
+            - source
+            type: object
+          status:
+            description: status represents the current information of a nfsexport. Consumers must verify binding between VolumeNfsExport and VolumeNfsExportContent objects is successful (by validating that both VolumeNfsExport and VolumeNfsExportContent point at each other) before using this object.
+            properties:
+              boundVolumeNfsExportContentName:
+                description: 'boundVolumeNfsExportContentName is the name of the VolumeNfsExportContent object to which this VolumeNfsExport object intends to bind to. If not specified, it indicates that the VolumeNfsExport object has not been successfully bound to a VolumeNfsExportContent object yet. NOTE: To avoid possible security issues, consumers must verify binding between VolumeNfsExport and VolumeNfsExportContent objects is successful (by validating that both VolumeNfsExport and VolumeNfsExportContent point at each other) before using this object.'
+                type: string
+              creationTime:
+                description: creationTime is the timestamp when the point-in-time nfsexport is taken by the underlying storage system. In dynamic nfsexport creation case, this field will be filled in by the nfsexport controller with the "creation_time" value returned from CSI "CreateNfsExport" gRPC call. For a pre-existing nfsexport, this field will be filled with the "creation_time" value returned from the CSI "ListNfsExports" gRPC call if the driver supports it. If not specified, it may indicate that the creation time of the nfsexport is unknown.
+                format: date-time
+                type: string
+              error:
+                description: error is the last observed error during nfsexport creation, if any. This field could be helpful to upper level controllers(i.e., application controller) to decide whether they should continue on waiting for the nfsexport to be created based on the type of error reported. The nfsexport controller will keep retrying when an error occurs during the nfsexport creation. Upon success, this error field will be cleared.
+                properties:
+                  message:
+                    description: 'message is a string detailing the encountered error during nfsexport creation if specified. NOTE: message may be logged, and it should not contain sensitive information.'
+                    type: string
+                  time:
+                    description: time is the timestamp when the error was encountered.
+                    format: date-time
+                    type: string
+                type: object
+              readyToUse:
+                description: readyToUse indicates if the nfsexport is ready to be used to restore a volume. In dynamic nfsexport creation case, this field will be filled in by the nfsexport controller with the "ready_to_use" value returned from CSI "CreateNfsExport" gRPC call. For a pre-existing nfsexport, this field will be filled with the "ready_to_use" value returned from the CSI "ListNfsExports" gRPC call if the driver supports it, otherwise, this field will be set to "True". If not specified, it means the readiness of a nfsexport is unknown.
+                type: boolean
+              restoreSize:
+                type: string
+                description: restoreSize represents the minimum size of volume required to create a volume from this nfsexport. In dynamic nfsexport creation case, this field will be filled in by the nfsexport controller with the "size_bytes" value returned from CSI "CreateNfsExport" gRPC call. For a pre-existing nfsexport, this field will be filled with the "size_bytes" value returned from the CSI "ListNfsExports" gRPC call if the driver supports it. When restoring a volume from this nfsexport, the size of the volume MUST NOT be smaller than the restoreSize if it is specified, otherwise the restoration will fail. If not specified, it indicates that the size is unknown.
+                pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                x-kubernetes-int-or-string: true
+            type: object
+        required:
+        - spec
+        type: object
+    served: false
+    storage: false
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

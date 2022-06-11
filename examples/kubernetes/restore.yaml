@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hpvc-restore
+spec:
+  storageClassName: csi-hostpath-sc
+  dataSource:
+    name: new-nfsexport-demo 
+    kind: VolumeNfsExport
+    apiGroup: nfsexport.storage.k8s.io
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

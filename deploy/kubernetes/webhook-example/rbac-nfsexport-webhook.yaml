@@ -1,0 +1,34 @@
+# RBAC file for the nfsexport webhook.
+#
+# The nfsexport webhook implements the validation and admission for CSI nfsexport functionality.
+# It should be installed as part of the base Kubernetes distribution in an appropriate
+# namespace for components implementing base system functionality. For installing with
+# Vanilla Kubernetes, kube-system makes sense for the namespace.
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nfsexport-webhook
+  namespace: default # NOTE: change the namespace
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nfsexport-webhook-runner
+rules:
+  - apiGroups: ["nfsexport.storage.k8s.io"]
+    resources: ["volumenfsexportclasses"]
+    verbs: ["get", "list", "watch"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: nfsexport-webhook-role
+subjects:
+  - kind: ServiceAccount
+    name: nfsexport-webhook
+    namespace: default # NOTE: change the namespace
+roleRef:
+  kind: ClusterRole
+  name: nfsexport-webhook-runner
+  apiGroup: rbac.authorization.k8s.io
