@@ -43,6 +43,7 @@ exporter:
 	docker build . -f docker/Dockerfile.exporter.ganesha -t daocloud.io/piraeus/volume-nfs-exporter:ganesha
 	# docker build . -f Dockerfile.exporter.alpine -t daocloud.io/piraeus/volume-nfs-exporter:alpine
 	# docker build . -f Dockerfile.exporter.busybox -t daocloud.io/piraeus/volume-nfs-exporter:busybox
+	
 upload:
 	docker push daocloud.io/piraeus/volume-nfs-provisioner
 	# docker push daocloud.io/piraeus/volume-nfs-exporter:busybox
