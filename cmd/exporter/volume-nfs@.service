@@ -1,0 +1,15 @@
+[Unit]
+Description=Volume NFS for %i
+Wants=nfs-server.service
+After=nfs-server.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/var/lib/nfs/volume/%i.env
+ExecStart=/var/lib/nfs/volume/export.sh -r %i
+ExecStop=/var/lib/nfs/volume/export.sh -u %i
+ExecStopPost=/var/lib/nfs/volume/export.sh -c %i
+
+[Install]
+WantedBy=multi-user.target

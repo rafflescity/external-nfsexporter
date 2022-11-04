@@ -1,0 +1,12 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: volume-nfs-sc
+provisioner: nfsexport.rafflescity.io
+reclaimPolicy: Delete
+parameters:
+  nfsExporterImage: daocloud.io/piraeus/volume-nfs-exporter:ganesha
+  backendNamespaceAggregation: "true" # if true, place backends in a same namespace set by "backendNamespace"; if false, use PVC namespace, and ignore "backendNamespace"
+  backendNamespace: "" # if empty, use default namespace volume-nfs-export
+  backendStorageClass: local-path
+  # backendStorageClass: piraeus-local-dflt-r2

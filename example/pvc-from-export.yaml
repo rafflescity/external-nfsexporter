@@ -1,0 +1,18 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-from-export
+spec:
+  storageClassName: volume-nfs-sc
+  accessModes:
+    - ReadWriteMany
+  dataSource:
+    # name: pvc-53e663cf-aeae-4163-bdf2-656e8bb54e3e
+    # kind: VolumeExport
+    # apiGroup: nfsexport.rafflescity.io
+    name: mysnap
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+  resources:
+    requests:
+      storage: 15Gi

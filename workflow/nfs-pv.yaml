@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ${nfs_pv}
+spec:
+  storageClassName: ""
+  claimRef:
+    namespace: ${nfs_ns}
+    name: ${nfs_pvc}
+  capacity:
+    storage: ${size}
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  mountOptions: 
+  - nfsvers=4.2
+  - proto=tcp
+  - timeo=80
+  nfs:
+    server: ${cluster_ip}
+    path: /var/lib/nfs/volume/${data_pv}

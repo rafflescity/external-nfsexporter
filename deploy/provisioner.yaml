@@ -1,0 +1,45 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: volume-nfs-export
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: volume-nfs-provisoner
+  namespace: volume-nfs-export
+  labels:
+    app: volume-nfs-provisoner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: volume-nfs-provisoner
+  template:
+    metadata:
+      labels:
+        app: volume-nfs-provisoner
+    spec:
+      serviceAccount: volume-nfs-provisioner
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: provisioner
+        image: daocloud.io/piraeus/volume-nfs-provisioner
+        imagePullPolicy: Always
+        resources: {}
+        args: 
+        - -name=nfsexport.rafflescity.io
+        - -leader-elect=false
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/master
+                operator: Exists
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists

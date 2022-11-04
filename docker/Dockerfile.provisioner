@@ -1,0 +1,5 @@
+FROM busybox
+
+COPY volume-nfs-provisioner /
+
+ENTRYPOINT [ "/volume-nfs-provisioner" ]

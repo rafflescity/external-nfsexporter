@@ -1,0 +1,10 @@
+# this is an example, using local-path-provisioner
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-path
+  annotations:
+    storageclass.kubernetes.io/is-default-class: 'true'
+provisioner: daocloud.io/local-path
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete

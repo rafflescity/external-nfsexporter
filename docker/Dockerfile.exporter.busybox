@@ -1,0 +1,5 @@
+FROM busybox
+
+COPY cmd/exporter/ /usr/bin/
+
+ENTRYPOINT [ "entry.sh" ]
