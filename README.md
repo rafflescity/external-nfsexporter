@@ -59,6 +59,14 @@ $ make try
 
 This will create NFS Export for a volume using the default `StorageClass`, and then run an Nginx pod using that export.
 
+For example, here we use local-path as the default `StorageClass`.
+
+```console
+$ kubectl get sc local-path
+NAME                   PROVISIONER              RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+local-path (default)   daocloud.io/local-path   Delete          WaitForFirstConsumer   false                  175d
+```
+
 Frontend Result:
 
 ```console
